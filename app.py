@@ -1,43 +1,27 @@
-# import streamlit as st
-
-# if "message_history" not in st.session_state:
-#     st.session_state["message_history"] = []
-
-# for message in st.session_state["message_history"]:
-#     with st.chat_message(message["role"]):
-#         st.text(message["content"])
-
-# user_input = st.chat_input("Type your message here...")
-
-# if user_input:
-#     st.session_state["message_history"].append({"role": "user", "content": user_input})
-#     with st.chat_message("user"):
-#         st.text(user_input)
-
-#     st.session_state["message_history"].append({"role": "assistant", "content": "Hi there! How can I help you?"})
-#     with st.chat_message("assistant"):
-#         st.text("Hi there! How can I help you?")
-
-import streamlit as st
+# app.py
+import gradio as gr
 from rag_engine import rag_pipeline
 
-st.set_page_config(page_title="Deep Learning RAG Bot")
-st.title("📘 Deep Learning Chatbot")
+def answer_question(user_input):
+    if not user_input or user_input.strip() == "":
+        return "Please ask a question."
+    return rag_pipeline(user_input)
 
-if "messages" not in st.session_state:
-    st.session_state.messages = []
+title = "📘 Deep Learning RAG Chatbot"
+description = "Ask about deep learning. Data loaded from your FAISS index/doc_chunks.json."
 
-for msg in st.session_state.messages:
-    with st.chat_message(msg["role"]):
-        st.markdown(msg["content"])
+with gr.Blocks() as demo:
+    gr.Markdown(f"## {title}")
+    gr.Markdown(description)
 
-if user_query := st.chat_input("Ask me about deep learning..."):
-    st.session_state.messages.append({"role": "user", "content": user_query})
-    with st.chat_message("user"):
-        st.markdown(user_query)
+    with gr.Row():
+        txt = gr.Textbox(label="Ask me about deep learning...", placeholder="Type your question here", lines=2)
+        btn = gr.Button("Ask")
 
-    response = rag_pipeline(user_query)
+    output = gr.Textbox(label="Answer", lines=15)
 
-    st.session_state.messages.append({"role": "assistant", "content": response})
-    with st.chat_message("assistant"):
-        st.markdown(response)
+    btn.click(answer_question, inputs=txt, outputs=output)
+    txt.submit(answer_question, inputs=txt, outputs=output)
+
+if __name__ == "__main__":
+    demo.launch()
