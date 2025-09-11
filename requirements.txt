@@ -1,18 +1,17 @@
-# Web UI
+# Core app
 streamlit==1.28.0
 
-# LangChain and vectorstores
-langchain==0.2.20
-langchain-community==0.0.199
-faiss-cpu==1.7.4
+# LangChain and embeddings
+langchain==0.3.26
 sentence-transformers==2.2.2
+faiss-cpu==1.7.4
 
-# LLM / API client
-openai==1.31.0
+# OpenAI / OpenRouter client
+openai==0.27.8
+openrouter-py==0.0.9
+
+# PDF handling
+pymupdf==1.23.1
+
+# Utilities
 python-dotenv==1.0.1
-
-# PDF loaders
-PyMuPDF==1.22.5
-
-# Optional / common utils
-regex==2025.9.15
