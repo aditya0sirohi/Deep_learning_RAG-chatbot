@@ -3,9 +3,34 @@ streamlit==1.28.0
 
 # LangChain and embeddings
 langchain==0.3.26
+langchain-community==0.0.25
 sentence-transformers==2.2.2
-faiss-cpu==1.12.0       # instead of 1.7.4
-rich<14,>=10.14.0       # instead of 14.1.0
+faiss-cpu==1.12.0
+transformers==4.56.1
+torch==2.8.0
+torchvision==0.23.0
+huggingface-hub==0.34.4
+sentencepiece==0.2.1
+safetensors==0.6.2
+numpy==1.26.4
+pandas==2.3.2
+scikit-learn==1.7.2
+scipy==1.15.3
+tqdm==4.67.1
+requests==2.32.5
+pillow==10.4.0
+pyarrow==21.0.0
+packaging==23.2
 markdown-it-py==4.0.0
 mdurl==0.1.2
 pygments==2.19.2
+validators==0.35.0
+orjson==3.11.3
+jsonschema==4.25.1
+blinker==1.9.0
+click==8.2.1
+importlib-metadata==6.11.0
+python-dateutil==2.9.0.post0
+tzdata==2025.2
+tzlocal==5.3.1
+watchdog==6.0.0
